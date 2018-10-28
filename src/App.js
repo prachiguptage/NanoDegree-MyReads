@@ -10,6 +10,20 @@ class BooksApp extends React.Component {
     newBook:false
   }
 
+  changeSelf=(book, shelf) =>{
+    BooksAPI.update( book,shelf).then((response)=>{
+      let newList = this.state.books.slice(0);
+      const books = newList.filter(listBook =>listBook.id===book.id);
+      if(books.length){
+        books[0].shelf=shelf;
+      }else{
+        newList.push(book);
+        newList = BookUtils.sortAllBooks(newList);
+      }
+      this.setState({books:newList});
+    })
+  }
+
   componentDidMount=() =>{
     if(this.state.newBook){
       this.refreshAllBooks();
@@ -29,7 +43,10 @@ class BooksApp extends React.Component {
  
   render() {
     return (
-      <BookCase books={this.state.books} onRefreshAllBooks={this.refreshAllBooks}/>
+      <BookCase 
+        books={this.state.books} 
+        onRefreshAllBooks={this.refreshAllBooks}
+        onChangeSelf={this.changeSelf}/>
     )
   }
 }

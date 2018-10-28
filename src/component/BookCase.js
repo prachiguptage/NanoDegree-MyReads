@@ -46,7 +46,8 @@ class BookCase extends Component {
               <div>
               	{shelves && shelves.map((shelf)=>(<BookShelf
               		key={shelf.name}
-              		shelf={shelf}/>))}
+              		shelf={shelf}
+              		onChangeSelf={this.props.onChangeSelf}/>))}
                 
               </div>
             </div>
