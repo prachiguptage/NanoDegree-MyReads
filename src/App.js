@@ -1,8 +1,10 @@
 import React from 'react'
+import {Route} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI'
 import * as BookUtils from './BookUtils'
 import './App.css'
 import BookCase from'./component/BookCase'
+import Search from'./component/Search'
 
 class BooksApp extends React.Component {
   state ={
@@ -43,10 +45,19 @@ class BooksApp extends React.Component {
  
   render() {
     return (
-      <BookCase 
-        books={this.state.books} 
-        onRefreshAllBooks={this.refreshAllBooks}
-        onChangeSelf={this.changeSelf}/>
+      <div className="app">
+        <Route exact path="/" render ={()=>(
+          <BookCase 
+            books={this.state.books} 
+            onRefreshAllBooks={this.refreshAllBooks}
+            onChangeSelf={this.changeSelf}/>
+          )}/>
+        <Route exact path="/search" render ={()=>(
+          <Search 
+            selectedBooks={this.state.books}
+            onChangeSelf={this.changeSelf}/>
+        )}/>
+      </div>      
     )
   }
 }
