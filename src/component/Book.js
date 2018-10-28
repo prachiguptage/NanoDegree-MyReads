@@ -6,18 +6,19 @@ class Book extends Component {
 		shelfSelection: this.props.book.shelf || "none"
 	}
 	render() {
-		const authors = this.props.book.authours && this.props.book.authors.join('|');
+		const book =this.props.book;
+		const authors = book.authours && book.authors.join('|');
 
-		let url =(this.props.book.imageLinks && `url(${this.props.book.imageLinks.thumbnail})`);
+		let url =(book.imageLinks && `url(${book.imageLinks.thumbnail})`);
 		return(
 			<div className="book">
               <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: url }}></div>
                 	<Changer 
-                		book={this.props.book}
-                		onChangeSelf={this.props.onChangeSelf}/>
+                		book={book}
+                		onChangeShelf={this.props.onChangeShelf}/>
               </div>
-              <div className="book-title">{this.props.book.title}</div>
+              <div className="book-title">{book.title}</div>
               <div className="book-authors">{authors}</div>
             </div>
 		)

@@ -15,8 +15,8 @@ class Search extends Component {
 
 	changeQuery=(value)=>{
 		clearTimeout(this.queryTimer);
-		this.setState({query:value});
-		this.queryTimer=setTimeout(this.updateSearch,250);
+		this.setState({query:value.trim()});
+		this.queryTimer=setTimeout(this.updateSearch,150);
 	}
 
 	updateSearch=()=>{
@@ -59,7 +59,7 @@ class Search extends Component {
               	{this.state.books && this.state.books.map(book =>(
               		<li key={book.id}>
               			<Book book={book} 
-              				onChangeSelf={this.props.onChangeSelf} 
+              				onChangeShelf={this.props.onChangeShelf} 
               				onUpdateQuickView={this.updateQuickView}/>
               		</li>
               		))}

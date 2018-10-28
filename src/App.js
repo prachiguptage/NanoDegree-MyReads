@@ -12,7 +12,7 @@ class BooksApp extends React.Component {
     newBook:false
   }
 
-  changeSelf=(book, shelf) =>{
+  changeShelf=(book, shelf) =>{
     BooksAPI.update( book,shelf).then((response)=>{
       let newList = this.state.books.slice(0);
       const books = newList.filter(listBook =>listBook.id===book.id);
@@ -50,12 +50,12 @@ class BooksApp extends React.Component {
           <BookCase 
             books={this.state.books} 
             onRefreshAllBooks={this.refreshAllBooks}
-            onChangeSelf={this.changeSelf}/>
+            onChangeShelf={this.changeShelf}/>
           )}/>
-        <Route exact path="/search" render ={()=>(
+        <Route exact path="/search" render ={({history})=>(
           <Search 
             selectedBooks={this.state.books}
-            onChangeSelf={this.changeSelf}/>
+            onChangeShelf={this.changeShelf}/>
         )}/>
       </div>      
     )

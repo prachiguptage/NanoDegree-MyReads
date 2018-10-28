@@ -13,7 +13,7 @@ class BookShelf extends Component {
 		          	<li key={book.id}>
 		          		<Book
 		          			book={book}
-		          			onChangeSelf={this.props.onChangeSelf}/>
+		          			onChangeShelf={this.props.onChangeShelf}/>
 		          	</li>
 		          ))}
 		        </ol>

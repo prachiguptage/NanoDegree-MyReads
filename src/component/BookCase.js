@@ -13,17 +13,18 @@ class BookCase extends Component {
 	}
 
 	updateShelves =()=>{
+		const bookList = this.props.books;
 		const newCurrent ={
 			name:"Currently Reading",
-			books:this.props.books.filter(book=> book.shelf === 'currentlyReading')
+			books:bookList.filter(book=> book.shelf === 'currentlyReading')
 		};
 		const newWant ={
 			name:"Want to Read",
-			books:this.props.books.filter(book=> book.shelf === 'wantToRead')
+			books:bookList.filter(book=> book.shelf === 'wantToRead')
 		};
 		const newRead ={
 			name:"Read",
-			books:this.props.books.filter(book=> book.shelf === 'read')
+			books:bookList.filter(book=> book.shelf === 'read')
 		};
 
 		return ([newCurrent,newWant,newRead]);
@@ -44,7 +45,7 @@ class BookCase extends Component {
               	{shelves && shelves.map((shelf)=>(<BookShelf
               		key={shelf.name}
               		shelf={shelf}
-              		onChangeSelf={this.props.onChangeSelf}/>))}
+              		onChangeShelf={this.props.onChangeShelf}/>))}
                 
               </div>
             </div>
